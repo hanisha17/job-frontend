@@ -1,0 +1,168 @@
+
+<section class="vh-200" style="background-color: #eee;">
+    <div class="container " >
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+
+                        <h1 style="text-align:center" class="my-3">Recruiter Login</h1>
+                        <form #recruiterForm="ngForm" (submit)="saveRecruiter(recruiterForm.value)">
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <label for="">Company Name</label>
+                                        <div>
+                                        <input ngModel required minlength="2" class="form-control mt-3" type="text"
+                                            #t_companyName="ngModel" placeholder="Enter company Name"
+                                            [class.is-invalid]="t_companyName.invalid && t_companyName.touched"
+                                            [class.is-valid]="t_companyName.valid" name="companyName" 
+                                            style="opacity: 70%;">
+                                        <p *ngIf="t_companyName.touched && t_companyName.invalid">
+                                            <small *ngIf="t_companyName.errors?.['required']"
+                                                class="text-danger">Company name is required!!</small>
+                                            <small *ngIf="t_companyName.errors?.['minlength']" class="text-danger">Name
+                                                should contain atleast 2 digits !!</small>
+                                        </p>
+                                    </div>
+                                    <label class="my-3">Select Skills</label>
+                                        <div>
+                                        <ng-multiselect-dropdown  name="dropdown" placeholder="Select your skills"
+                                            [settings]="dropdownSettings" [data]="dropdownList"
+                                            [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+                                            (onSelectAll)="onSelectAll($event)" ngModel required #dropdown="ngModel">
+                                        </ng-multiselect-dropdown>
+                                        <small class="text-danger" *ngIf="dropdown.errors?.['required']">Atleast one
+                                            skill
+                                            required</small>
+                                        </div>
+
+                                        <label for="" class="my-3">Job Title</label>
+                                        <input ngModel required class="form-control my-1" type="text"
+                                            #t_jobTitle="ngModel" placeholder="Input Job Title" style="opacity: 70%"
+                                            [class.is-invalid]="t_jobTitle.invalid && t_jobTitle.touched"
+                                            [class.is-valid]="t_jobTitle.valid" name="jobTitle" id="jobTitle">
+                                        <p *ngIf="t_jobTitle.touched && t_jobTitle.invalid">
+                                            <small *ngIf="t_jobTitle.errors?.['required']" class="text-danger">JobTitle
+                                                is required !!</small>
+                                        </p>
+                                        <label class="my-3" for="">Location</label>
+                                        <input ngModel required class="form-control my-3" #t_location="ngModel"
+                                            placeholder="Input Location"
+                                            [class.is-invalid]="t_location.invalid && t_location.touched"
+                                            [class.is-valid]="t_location.valid" name="location"
+                                            id="location" style="opacity: 70%">
+                                        <p *ngIf="t_location.touched && t_location.invalid">
+                                            <small *ngIf="t_location.errors?.['required']"
+                                                class="text-danger">location is required !!</small>
+                                        </p>
+                                        <label for="" class="my-3">Experience</label>
+                                        <input ngModel required class="form-control my-1" type="number"
+                                            #t_experience="ngModel" placeholder="Enter Your Experience" style="opacity: 70%"
+                                            [class.is-invalid]="t_experience.invalid && t_experience.touched"
+                                            [class.is-valid]="t_experience.valid" name="experience" >
+                                        <p *ngIf="t_experience.touched && t_experience.invalid">
+                                            <small *ngIf="t_experience.errors?.['required']" class="text-danger">Experience
+                                                is required !!</small>
+                                        </p>
+                                        <label for="" class="my-3">Salary</label>
+                                        <input ngModel required class="form-control my-1" type="number"
+                                            #t_salary="ngModel" placeholder="Enter Your Salary" style="opacity: 70%"
+                                            [class.is-invalid]="t_salary.invalid && t_salary.touched"
+                                            [class.is-valid]="t_salary.valid" name="salary">
+                                        <p *ngIf="t_salary.touched && t_salary.invalid">
+                                            <small *ngIf="t_salary.errors?.['required']" class="text-danger">Salary
+                                                is required !!</small>
+                                        </p>
+                                        <label for="" class="my-3">Logo</label>
+                                        <input ngModel required class="form-control custom-file-input my-1" type="text" 
+                                            #t_imageUrl="ngModel" placeholder="Upload logo image"
+                                            [class.is-invalid]="t_imageUrl.invalid && t_imageUrl.touched"
+                                            [class.is-valid]="t_imageUrl.valid" name="imageUrl">
+                                        <p *ngIf="t_imageUrl.touched && t_imageUrl.invalid">
+                                            <small *ngIf="t_imageUrl.errors?.['required']" class="text-danger">Logo
+                                                is required !!</small>
+                                            <small *ngIf="t_imageUrl.errors?.['pattern']" class="text-danger">Inappropriate file extension</small>
+                                        </p>
+                                        <button class="btn btn-success my-3" [disabled]="recruiterForm.invalid"
+                                            type="submit"> Save</button>
+                                            <div class="text-danger">**Will be displayed only after admin approval</div>
+                    
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <img class="img-fluid"
+                                            src="https://careers.nais.org/pics/gui/clc/9_Effective_Interview_Practices_for_Employers.jpg"
+                                            height="300px">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- recruiter-card -->
+<!-- <nav class="navbar navbar-expand-lg nav-dark bg-dark">
+    <a class="navbar-brand" style="color:aliceblue;">Recruiter</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarcolor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="color:aliceblue;">Add Recruitement <span calss="sr-only">(current)</span> </a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input type="search" name="key" id="searchName" class="form-cntrol mr-sm-2" placeholder="search job........">
+        </form>
+    </div>
+</nav>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div *ngFor="let recruiter of recruiters" class="col-md-6 col-xl-3">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        <a href=""><img src="{{recruiter?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <h5>{{recruiter?.companyName}}</h5>
+                        <p class="m-0">{{recruiter?.jobTitle}}</p>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Location : <a href="#">{{recruiter?.location}}</a></li>
+                    <li class="list-group-item"><i class="fa fa-phone float-right"></i>Experience : {{recruiter?.Experience}}</li>
+                </ul>
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    </div>
+                    <ul class="social-links list-inline mb-0">
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div></div>        -->
+
+
+    
+

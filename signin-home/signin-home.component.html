@@ -1,0 +1,207 @@
+<div class="body-width">
+
+    <!-- Header -->
+    
+    <nav class="navbar navbar-expand-lg bg-dark">
+    
+       <strong> <a class="navbar-brand my-2 mx-3 text-light" routerLink="/sign-in/home"><i class="fa fa-tasks"></i> JOB QUEST</a></strong>
+        
+        <div class="text-light">
+        
+        </div>
+        
+        <div class="container-fluid align-items-center justify-content-center">
+            
+            
+            
+            
+            <form class="d-flex " role="search" >
+                <div class="search-skill mx-2" >
+                    <select class="form-control" ngModel #searchText="ngModel" name="skill" >
+                        <option  *ngFor="let skill of skillsList" [value]="skill.skill"><span>{{skill.skill}}</span></option>
+                    </select></div>
+                    <button (click)="searchSkill(searchText.value)" class="btn btn-success" type="button" >Search</button>
+                    
+                </form>
+                
+            </div>
+            
+            <div >
+                 
+                 <a (click)="btnProfile()" style="cursor: pointer" class="mx-4">  <i class="fa fa-user fa-2x text-light"></i></a>
+            </div>
+
+    
+        <!-- <div class="dropdown">
+    
+        <button class="btn dropbtn btn-secondary addMore" title="click"  type="submit">Profile</button>
+    
+       
+    
+        </div> -->
+    
+        <!-- <button><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="50" ></button> -->
+    
+        <!-- <ul>
+    
+            <li><a href="#">Home</a></li>
+    
+            <li><a href="#">View applied jobs</a></li>
+    
+            <li><a href="#">About</a></li>
+    
+            <li><a href="#">Contact</a></li>
+    
+        </ul> -->
+    
+    
+    
+        <!-- <div class="sub-menu-wrap" name="subMenu">
+    
+            <div class="sub-menu">
+    
+                <div class="user-info">
+    
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="50" >
+    
+                <h2 >UserName</h2>
+    
+                </div>
+    
+                <hr>
+    
+           
+    
+            <a href="#" class="sub-menu-link">
+    
+               
+    
+                <p>Home</p>
+    
+                <span>></span>
+    
+            </a>
+    
+            <a href="#" class="sub-menu-link">
+    
+               
+    
+                <p>Logout</p>
+    
+                <span>></span>
+    
+            </a>
+    
+           
+    
+        </div>
+    
+    </div> -->
+    
+    <button class="rounded" (click)="isLogOut()"><span class="fa fa-sign-out"></span> Logout</button>
+    
+    
+
+      </nav>
+
+
+<!-- <nav class="navbar navbar-expand-lg nav-dark bg-dark">
+    <a class="navbar-brand" style="color:aliceblue;">Recruiter</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarcolor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="color:aliceblue;">Add Recruitement <span calss="sr-only">(current)</span> </a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input type="search" name="key" id="searchName" class="form-cntrol mr-sm-2" placeholder="search job........">
+        </form>
+    </div>
+</nav> -->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div style="background-color: rgb(99, 92, 92)">
+<div class="container">
+<div class="row" >
+
+    <div class="col-md-6 col-xl-3 my-4 " *ngFor="let recruiter of recruiters">
+
+        <div class="card m-b-30 ">
+
+            <div class="card-body row">
+
+                <div class="col-6">
+
+                   <img src="{{recruiter.imageUrl}}" alt="Image not found" class="img-fluid  w-80">
+
+                </div>
+
+                <div class="col-6 card-title align-self-center">
+
+                    <h5>       
+                        {{recruiter?.companyName}}</h5>
+
+                    <p class="m-0">{{recruiter?.jobTitle}}</p>
+
+                </div>
+
+            </div>
+
+            <ul class="list-group list-group-flush">
+                
+                
+                <li   class="list-group-item"><i class="fa fa-lightbulb-o mx-2"></i>
+                    Skills:  
+                
+                
+                <span  *ngFor="let i of recruiter.dropdown">{{i?.skill+" "}}</span>
+                
+
+                </li>
+
+                <li class="list-group-item"><i class="fa fa-briefcase mx-2"></i>Experince : {{recruiter?.experience}}</li>
+
+               
+
+                  <li class="list-group-item"><i class="fa fa-money mx-2"></i>Package : {{recruiter?.salary}}</li>
+
+                  <li class="list-group-item"><i class="fa fa-map-marker mx-2"></i>Location : {{recruiter?.location}}</li>
+
+                 
+
+            </ul>
+
+            <div class="card-body">
+
+                <div class="float-right btn-group btn-group-sm">
+
+                    <!-- <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+
+                    <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a> -->
+
+                    <button (click)="applyAlert(recruiter.id)" class="btn btn-primary">Apply</button>
+
+                </div>
+
+                <!-- <ul class="social-links list-inline mb-0">
+
+                    <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
+
+                    <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+
+                    <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+
+                </ul> -->
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>
+</div>

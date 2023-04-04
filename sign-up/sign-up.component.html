@@ -1,0 +1,142 @@
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                <form class="mx-1 mx-md-4" #signupForm="ngForm" (submit)="onRegister(signupForm.value)">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <!-- <i class="fa fa-user fa-lg me-3 fa-fw"></i> -->
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="name">Your Name</label>
+                      <input ngModel required minlength="3" pattern="[a-zA-Z\s]+" class="form-control" type="text"
+                        #t_yourName="ngModel" name="userName"  [class.is-valid]="t_yourName.valid"
+                        [class.is-invalid]="t_yourName.touched && t_yourName.invalid">
+                      <p *ngIf="t_yourName.invalid && t_yourName.touched" class="text-danger">
+                        <small *ngIf="t_yourName.errors?.['required']">Name is required</small>
+                        <small *ngIf="t_yourName.errors?.['pattern']">Invalid pattern</small><br>
+                        <small *ngIf="t_yourName.errors?.['minlength']">Name should be atleast 3 letters</small>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <!-- <i class="fa fa-envelope fa-lg me-3 fa-fw"></i> -->
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="yourEmail">Your Email</label>
+                      <input ngModel email required class="form-control" type="email" #t_email="ngModel"
+                        [class.is-invalid]="t_email.invalid && t_email.touched" [class.is-valid]="t_email.valid"
+                        name="email">
+                      <p *ngIf="t_email.touched && t_email.invalid" class="text-danger">
+                        <small *ngIf="t_email.errors?.['required']">Email is required</small>
+                        <small *ngIf="t_email.errors?.['email']">Please provide proper mail Id</small>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <!-- <i class="fa fa-envelope fa-lg me-3 fa-fw"></i> -->
+                    <div class="form-outline flex-fill mb-0">
+                      <label for="mobileNumber">Mobile Number</label>
+                      <input name="mobileNumber" type="text" class="form-control" ngModel required
+                        pattern="^((\\+91-?)|0)?[0-9]{10}$" #mobileNumber="ngModel"
+                        [class.is-invalid]="mobileNumber.invalid && mobileNumber.touched"
+                        [class.is-valid]="mobileNumber.valid">
+                      <p *ngIf="mobileNumber.touched && mobileNumber.invalid" class="text-danger">
+                        <small *ngIf="mobileNumber.errors?.['required']">Mobile Number is required.</small>
+                        <small *ngIf="mobileNumber.errors?.['pattern']">Please, Enter 10 digit Mobile Number.</small>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <!-- <i class="fa fa-envelope fa-lg me-3 fa-fw"></i> -->
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="qualification">Qualification</label>
+                      <input ngModel required class="form-control" type="text" #t_qualification="ngModel"
+                        [class.is-invalid]="t_qualification.invalid && t_qualification.touched" [class.is-valid]="t_qualification.valid"
+                        name="qualification">
+                      <p *ngIf="t_qualification.touched && t_qualification.invalid" class="text-danger">
+                        <small *ngIf="t_qualification.errors?.['required']">Qualification is required</small>
+    
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <!-- <i class="fa fa-user fa-lg me-3 fa-fw"></i> -->
+                    <div class="form-outline flex-fill mb-0">
+                      <ng-multiselect-dropdown name="dropdown" placeholder="Select your skills"
+                        [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
+                        (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" ngModel required
+                        #dropdown="ngModel">
+                      </ng-multiselect-dropdown>
+                      <small class="text-danger" *ngIf="dropdown.errors?.['required']">Atleast one skill
+                        required</small>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <!-- <i class="fa fa-user fa-lg me-3 fa-fw"></i> -->
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="customFile">Upload your resume</label>
+                      <input type="file" class="form-control" name="customFile" />
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row align-items-center mb-4">
+                   
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="password">New Password</label>
+                      <input ngModel required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{9,}$"
+                        name="password" type="password" class="form-control" #newPassword="ngModel"
+                        [class.is-valid]="newPassword.valid"
+                        [class.is-invalid]="newPassword.touched && newPassword.invalid" />
+                      <p *ngIf="newPassword.invalid &&newPassword.touched" class="text-danger">
+                        <small *ngIf="newPassword.errors?.['required']">
+                          Field is required
+                        </small>
+                        <small *ngIf="newPassword.errors?.['pattern']">
+                          Password must contain at least one number, one uppercase, a
+                          lowercase letter without whitespace and a minlength of 8
+                        </small>
+                      </p>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="form-check d-flex justify-content-center mb-5">
+                    <input class="form-check-input me-2" type="checkbox" value="" name="active" ngModel required />
+                    <label class="form-check-label" for="checkbox">
+                      I agree all statements in <a href="#!">Terms of service</a>
+                    </label>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button [disabled]="signupForm.invalid" type="submit" 
+                      class="btn btn-primary btn-lg">Register</button>
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  class="img-fluid" alt="Sample image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

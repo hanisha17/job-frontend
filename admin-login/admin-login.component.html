@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+  <strong><a class="text-light navbar-brand my-2" routerLink="/admin-login"><i class="fa fa-tasks"></i> JOB QUEST</a></strong>
+  
+ 
+  <button class="rounded " (click)="isLogOut()"><span class="fa fa-sign-out" ></span> Logout</button>    
+  </div>
+</nav>  
+
+  <div class= "my-3">
+  <table class="table table-primary table-striped table-hover">
+  <thead>
+  <th>Company</th>
+  <th>Job Title</th>
+  <th>Location</th>
+  <th >Accept</th>
+  <th >Deny</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let i of recruiters" >
+  <td>{{i.companyName}}</td>
+  <td>{{i.jobTitle}}</td>
+  <td>{{i.location}}</td>
+  <td><button (click)="onSave(i)" class="btn btn-success">{{i.status}} </button> </td>
+  <td><button (click)="onDelete(i.id)" class="btn btn-danger">Deny</button></td>
+  </tr>
+  </tbody>
+  </table>
+  </div>

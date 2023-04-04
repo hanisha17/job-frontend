@@ -1,0 +1,79 @@
+<!-- Header  -->
+<nav class="navbar navbar-expand-lg ">
+  <strong class="my-3"> <a class="navbar-brand  mx-3 text-light" routerLink="/"><i class="fa fa-tasks"></i> Job Quest</a> </strong> 
+<!-- <img src="\assets\Images\Logo.png" alt=""> -->
+</nav>
+
+<!-- Body  -->
+<body class="background mt-0">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+    integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+<div class="container my-5 mt-0 ">
+    <div class="row ">
+        <div class="col-md-11 mt-60 mx-md-auto">
+            <div class="login-box bg-white pl-lg-5 pl-0">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-6">
+                        <div class="form-wrap bg-white">
+                            <h2 class="btm-sep mb-4">Login</h2>
+                            <form class="form"  #signinForm="ngForm" (submit)="btnsigninForm(signinForm.value)"> 
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-account "></span>
+                                            <input ngModel required type="text" #t_userName="ngModel"
+                                                class="form-control my-3" placeholder="User Name"
+                                            [class.is-invalid]="t_userName.invalid && t_userName.touched"
+                                            [class.is-valid]="t_userName.valid" name="userName"
+                                            id="userName">
+                                            <!-- <p class="mx-5" *ngIf="t_email.touched && t_email.invalid">
+                                                <small *ngIf="t_email.errors?.['required']">Email ID is required</small>
+                                                <small *ngIf="t_email.errors?.['email']">Please Provide proper mail
+                                                    ID</small>
+                                            </p> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-email"></span>
+                                            <input ngModel required type="password" name="userPassword" class="form-control my-3"
+                                                placeholder="Password">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 mt-30">
+                                        <button [disabled]="signinForm.invalid" *ngIf="isLoggedIn()" type="submit"  class="btn btn-lg btn-primary my-3">Sign In
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="content text-center">
+                            <div class="border-bottom pb-5 mb-5">
+                                <h3 class="c-black mt-4 my-3">First time here?</h3>
+                                <button class="btn btn-primary btn-lg mt-2" (click)="btnClick()">Sign up</button>
+                            </div>
+                            <h5 class="c-black mb-4  mt-0">Or Sign In With</h5>
+                            <div class="socials">
+                                <a routerLink="/sign-in" class="zmdi zmdi-facebook"></a>
+                                <a routerLink="/sign-in" class="zmdi zmdi-twitter"></a>
+                                <a routerLink="/sign-in" class="zmdi zmdi-google"></a>
+                                <a routerLink="/sign-in" class="zmdi zmdi-instagram"></a>
+                            </div>
+                            <div class="recruiter my-4"> 
+                                <span>To post your company on our website </span>
+                                <a routerLink="/recruiter-login">click here</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
